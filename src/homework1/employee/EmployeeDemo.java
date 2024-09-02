@@ -41,7 +41,7 @@ public class EmployeeDemo implements AppCommand {
   private static void getEmployeeByCompanyName() {
     System.out.println("Enter company name: ");
     String companyName = scanner.nextLine();
-    employeeStorage.getEmployeeByCompanyName(companyName);
+    employeeStorage.printEmployeeByCompanyName(companyName);
   }
 
 
@@ -75,22 +75,22 @@ public class EmployeeDemo implements AppCommand {
       System.out.println("Please enter company");
       String company = scanner.nextLine();
       Employee employee = new Employee(id, name, surname, salary, position, company);
-      employeeStorage.addEmployee(employee);
+      employeeStorage.add(employee);
       System.out.println("Employee added successfully");
     }
   }
 
   private static void generateRandomEmployee() {
-    employeeStorage.addEmployee(new Employee("A001", "Michael", "Moore", 18162, "Support", "Apple"));
-    employeeStorage.addEmployee(new Employee("A002", "Sophia", "Davis", 18647, "Logistics", "Intel"));
-    employeeStorage.addEmployee(new Employee("A003", "Emily", "Johnson", 12981, "HR", "Samsung"));
-    employeeStorage.addEmployee(new Employee("A004", "James", "Jones", 14802, "IT", "Microsoft"));
-    employeeStorage.addEmployee(new Employee("A005", "Michael", "Miller", 16902, "Finance", "Google"));
-    employeeStorage.addEmployee(new Employee("A006", "Daniel", "Johnson", 17216, "Engineering", "Samsung"));
-    employeeStorage.addEmployee(new Employee("A007", "Sophia", "Wilson", 17456, "IT", "Tesla"));
-    employeeStorage.addEmployee(new Employee("A008", "James", "Davis", 11145, "Logistics", "IBM"));
-    employeeStorage.addEmployee(new Employee("A009", "James", "Johnson", 18899, "HR", "Amazon"));
-    employeeStorage.addEmployee(new Employee("A0010", "James", "Williams", 19622, "R&D", "Intel"));
+    employeeStorage.add(new Employee("A001", "Michael", "Moore", 18162, "Support", "Apple"));
+    employeeStorage.add(new Employee("A002", "Sophia", "Davis", 18647, "Logistics", "Intel"));
+    employeeStorage.add(new Employee("A003", "Emily", "Johnson", 12981, "HR", "Samsung"));
+    employeeStorage.add(new Employee("A004", "James", "Jones", 14802, "IT", "Microsoft"));
+    employeeStorage.add(new Employee("A005", "Michael", "Miller", 16902, "Finance", "Google"));
+    employeeStorage.add(new Employee("A006", "Daniel", "Johnson", 17216, "Engineering", "Samsung"));
+    employeeStorage.add(new Employee("A007", "Sophia", "Wilson", 17456, "IT", "Tesla"));
+    employeeStorage.add(new Employee("A008", "James", "Davis", 11145, "Logistics", "IBM"));
+    employeeStorage.add(new Employee("A009", "James", "Johnson", 18899, "HR", "Amazon"));
+    employeeStorage.add(new Employee("A0010", "James", "Williams", 19622, "R&D", "Intel"));
 
   }
 
