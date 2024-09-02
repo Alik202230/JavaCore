@@ -6,7 +6,7 @@ public class EmployeeStorage {
   private Employee[] employees = new Employee[10];
   private int size;
 
-  public void addEmployee(Employee employee) {
+  public void add(Employee employee) {
     if (size == employees.length) {
       extend();
     }
@@ -36,11 +36,7 @@ public class EmployeeStorage {
     }
   }
 
-  public boolean isEmpty() {
-    return size == 0;
-  }
-
-  public void getEmployeeByCompanyName(String company) {
+  public void printEmployeeByCompanyName(String company) {
     for (int i = 0; i < size; i++) {
       Employee employee = employees[i];
       if (employee.getCompany().equals(company)) {
