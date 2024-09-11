@@ -9,7 +9,8 @@ public class Order {
   private Product[] products;
   private double totalPrice;
 
-  public Order() {}
+  public Order() {
+  }
 
   public Order(int id, User user, Product[] products, double totalPrice) {
     this.id = id;
@@ -56,7 +57,10 @@ public class Order {
     if (o == null || getClass() != o.getClass()) return false;
 
     Order order = (Order) o;
-    return id == order.id && Double.compare(totalPrice, order.totalPrice) == 0 && Objects.equals(user, order.user) && Arrays.equals(products, order.products);
+    return id == order.id
+        && Double.compare(totalPrice, order.totalPrice) == 0
+        && Objects.equals(user, order.user)
+        && Arrays.equals(products, order.products);
   }
 
   @Override
@@ -72,7 +76,7 @@ public class Order {
   public String toString() {
     return "Order{" +
         "id=" + id +
-        ", user=" + user +
+        (user != null ? ", userId=" + user.getId() : "") +
         ", products=" + Arrays.toString(products) +
         ", totalPrice=" + totalPrice +
         '}';
