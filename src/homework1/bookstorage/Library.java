@@ -1,16 +1,24 @@
 package homework1.bookstorage;
 
+import homework1.bookstorage.constant.CommandConstant;
+import homework1.bookstorage.model.Author;
+import homework1.bookstorage.model.Book;
+import homework1.bookstorage.storage.AuthorStorage;
+import homework1.bookstorage.storage.BookStorage;
+
 import java.util.Scanner;
 
-public class Library {
-  private static final BookStorage bookStorage = new BookStorage(new Book[10], 0);
+public class Library implements CommandConstant {
+
+  private static final BookStorage bookStorage = new BookStorage();
+  private static final AuthorStorage authorStorage = new AuthorStorage();
   private static final Scanner scanner = new Scanner(System.in);
-  private static int count = 0;
+
   public static void main(String[] args) {
     boolean isRun = true;
 
     while (isRun) {
-      printCommands();
+      CommandConstant.printCommands();
       String command = scanner.nextLine();
       switch (command) {
         case CommandConstant.ZERO:
@@ -20,23 +28,68 @@ public class Library {
           addBook();
           break;
         case CommandConstant.TWO:
-          bookStorage.print();
+          addAuthor();
           break;
         case CommandConstant.THREE:
-          searchBook();
+          bookStorage.print();
           break;
         case CommandConstant.FOUR:
-          updateBook();
+          authorStorage.print();
           break;
         case CommandConstant.FIVE:
-          deleteBook();
+          searchBook();
           break;
         case CommandConstant.SIX:
-          bookByRange();
+          updateBook();
           break;
+        case CommandConstant.SEVEN:
+          deleteBook();
+          break;
+        case CommandConstant.EIGHT:
+          bookByRange();
+        case CommandConstant.NINE:
+          searchBookByAuthor();
         default:
           System.out.println(CommandConstant.INVALID_COMMAND);
       }
+    }
+  }
+
+  private static void searchBookByAuthor() {
+    authorStorage.print();
+    System.out.println("Please choose author id");
+    String authorId = scanner.nextLine();
+    Author author = authorStorage.getAuthorById(authorId);
+
+    if (author != null) {
+      bookStorage.searchByAuthor(author);
+    }
+
+  }
+
+  private static void addAuthor() {
+    System.out.println("Please input id, name, surname, phone, age");
+    String authorData = scanner.nextLine();
+    String[] authors = authorData.split(",");
+    if (authors.length == 5) {
+      String id = authors[0];
+      if (id != null && !id.isEmpty()) {
+        Author author = new Author(
+            id,
+            authors[1],
+            authors[2],
+            authors[3],
+            Integer.parseInt(authors[4])
+        );
+        authorStorage.add(author);
+        System.out.println("Author added successfully");
+      } else {
+        System.out.println("Author with id " + id + " already exists");
+      }
+    } else {
+      System.out.println("-----------------------------------------------");
+      System.out.println("   All field are required: Please try again!!");
+      System.out.println("-----------------------------------------------");
     }
   }
 
@@ -52,30 +105,35 @@ public class Library {
     System.out.println("Please enter book id");
     String id = scanner.nextLine();
     bookStorage.deleteBookById(id);
-    count--;
     System.out.println("Book deleted");
   }
 
   private static void addBook() {
-    System.out.println("Please enter book id");
-    String id = scanner.nextLine();
-    Book bookId = bookStorage.getBookById(id);
-    if (bookId != null) {
-      System.out.println("The id " + id + " already exists");
+    authorStorage.print();
+    System.out.println("Please choose author id");
+    String authorId = scanner.nextLine();
+    Author author = authorStorage.getAuthorById(authorId);
+    if (author != null) {
+      System.out.println("Please enter book id");
+      String id = scanner.nextLine();
+      Book bookId = bookStorage.getBookById(id);
+      if (bookId != null) {
+        System.out.println("The id " + id + " already exists");
+      } else {
+        System.out.println("Please enter book title");
+        String title = scanner.nextLine();
+        System.out.println("Please enter book price");
+        double price = Double.parseDouble(scanner.nextLine());
+        System.out.println("Please enter book quantity");
+        int quantity = Integer.parseInt(scanner.nextLine());
+        Book book = new Book(id, title, author, price, quantity);
+        bookStorage.add(book);
+        System.out.println("Book added successfully");
+      }
     } else {
-      System.out.println("Please enter book title");
-      String title = scanner.nextLine();
-      System.out.println("Please enter book author name");
-      String author = scanner.nextLine();
-      System.out.println("Please enter book price");
-      double price = Double.parseDouble(scanner.nextLine());
-      System.out.println("Please enter book quantity");
-      int quantity = Integer.parseInt(scanner.nextLine());
-      Book book = new Book(id, title, author, price, quantity);
-      bookStorage.add(book);
-      count++;
-      System.out.println("Book added successfully and book quantity is " + count);
+      System.out.println("Author with id " + authorId + " does not exist");
     }
+
   }
 
   private static void searchBook() {
@@ -93,32 +151,20 @@ public class Library {
     if (bookId != null) {
       System.out.println("Please enter book's new  title");
       String title = scanner.nextLine();
-      System.out.println("Please enter book author's new  name");
-      String author = scanner.nextLine();
-      System.out.println("Please enter book new  price");
-      String priceStr = scanner.nextLine();
-      if (title != null && !title.isEmpty()) {
-        bookId.setTitle(title);
-      }
-      if (author != null && !author.isEmpty()) {
+      String authorId = scanner.nextLine();
+      Author author = authorStorage.getAuthorById(authorId);
+      if (author != null) {
+        System.out.println("Please enter book new  price");
+        String priceStr = scanner.nextLine();
+        if (title != null && !title.isEmpty()) {
+          bookId.setTitle(title);
+        }
         bookId.setAuthor(author);
+        if (priceStr != null && !priceStr.isEmpty()) {
+          bookId.setPrice(Double.parseDouble(priceStr));
+        }
+        System.out.println("Book updated successfully");
       }
-      if (priceStr != null && !priceStr.isEmpty()) {
-        bookId.setPrice(Double.parseDouble(priceStr));
-      }
-      System.out.println("Book updated successfully");
     }
-
   }
-
-  private static void printCommands() {
-    System.out.println(CommandConstant.INPUT + " " + CommandConstant.ZERO + " for " + BookConstant.EXIT);
-    System.out.println(CommandConstant.INPUT + " " + CommandConstant.ONE + " for " + BookConstant.ADD_BOOK);
-    System.out.println(CommandConstant.INPUT + " " + CommandConstant.TWO + " for " + BookConstant.PRINT_ALL_BOOK);
-    System.out.println(CommandConstant.INPUT + " " + CommandConstant.THREE + " for " + BookConstant.SEARCH_BY_BOOK_TITLE);
-    System.out.println(CommandConstant.INPUT + " " + CommandConstant.FOUR + " for " + BookConstant.UPDATE_BOOK);
-    System.out.println(CommandConstant.INPUT + " " + CommandConstant.FIVE + " for " + BookConstant.DELETE_BOOK);
-    System.out.println(CommandConstant.INPUT + " " + CommandConstant.SIX + " for " + BookConstant.BOOK_BY_RANGE);
-  }
-
 }
