@@ -80,7 +80,7 @@ public class ShopApplication implements CommandConstant {
       }
 
       System.out.println("Please enter order id");
-      int orderId = scanner.nextInt();
+      int orderId = Integer.parseInt(scanner.nextLine());
       Order orderById = orderStorage.getOrderById(orderId);
       if (orderById == null) {
         Order order = new Order(orderId, userById, products, 0);
@@ -94,7 +94,6 @@ public class ShopApplication implements CommandConstant {
     } catch (NumberFormatException e) {
       System.out.println("Please enter user id");
     }
-
   }
 
   private static void displayAllProducts() {
