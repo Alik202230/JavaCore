@@ -1,13 +1,12 @@
-package homework1.bookstorage;
+package homework1.bookstorage.storage;
+
+import homework1.bookstorage.model.Author;
+import homework1.bookstorage.model.Book;
 
 public class BookStorage {
-  private Book[] books;
+  private Book[] books = new Book[10];
   private int size;
 
-  public BookStorage(Book[] books, int size) {
-    this.books = books;
-    this.size = size;
-  }
 
   public void add(Book book) {
     if (size == books.length) {
@@ -63,4 +62,11 @@ public class BookStorage {
     }
   }
 
+  public void searchByAuthor(Author author) {
+    for (int i = 0; i < size; i++) {
+      if (books[i].getAuthor().equals(author)) {
+        System.out.println(books[i]);
+      }
+    }
+  }
 }
