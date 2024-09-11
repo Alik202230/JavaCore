@@ -5,7 +5,10 @@ import homework1.bookstorage.model.Author;
 import homework1.bookstorage.model.Book;
 import homework1.bookstorage.storage.AuthorStorage;
 import homework1.bookstorage.storage.BookStorage;
+import homework1.bookstorage.utils.DateUtils;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Library implements CommandConstant {
@@ -68,21 +71,25 @@ public class Library implements CommandConstant {
   }
 
   private static void addAuthor() {
-    System.out.println("Please input id, name, surname, phone, age");
+    System.out.println("Please input id, name, surname, phone, date of birth (01-01-1990)");
     String authorData = scanner.nextLine();
     String[] authors = authorData.split(",");
     if (authors.length == 5) {
       String id = authors[0];
       if (id != null && !id.isEmpty()) {
-        Author author = new Author(
-            id,
-            authors[1],
-            authors[2],
-            authors[3],
-            Integer.parseInt(authors[4])
-        );
-        authorStorage.add(author);
-        System.out.println("Author added successfully");
+        try {
+          Author author = new Author(
+              id,
+              authors[1],
+              authors[2],
+              authors[3],
+              DateUtils.parseDate(authors[4])
+          );
+          authorStorage.add(author);
+          System.out.println("Author added successfully");
+        } catch (ParseException e) {
+          System.out.println("Date is incorrect");
+        }
       } else {
         System.out.println("Author with id " + id + " already exists");
       }
@@ -126,7 +133,7 @@ public class Library implements CommandConstant {
         double price = Double.parseDouble(scanner.nextLine());
         System.out.println("Please enter book quantity");
         int quantity = Integer.parseInt(scanner.nextLine());
-        Book book = new Book(id, title, author, price, quantity);
+        Book book = new Book(id, title, author, price, quantity, new Date());
         bookStorage.add(book);
         System.out.println("Book added successfully");
       }
