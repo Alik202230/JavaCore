@@ -1,5 +1,8 @@
 package homework1.bookstorage.model;
 
+import homework1.bookstorage.utils.DateUtils;
+
+import java.util.Date;
 import java.util.Objects;
 
 public class Author {
@@ -7,14 +10,14 @@ public class Author {
   private String name;
   private String surname;
   private String phone;
-  private int age;
+  private Date dateOfBirth;
 
-  public Author(String id, String name, String surname, String phone, int age) {
+  public Author(String id, String name, String surname, String phone, Date dateOfBirth) {
     this.id = id;
     this.name = name;
     this.surname = surname;
     this.phone = phone;
-    this.age = age;
+    this.dateOfBirth = dateOfBirth;
   }
 
   public String getId() {
@@ -25,12 +28,12 @@ public class Author {
     this.id = id;
   }
 
-  public int getAge() {
-    return age;
+  public Date getAge() {
+    return dateOfBirth;
   }
 
-  public void setAge(int age) {
-    this.age = age;
+  public void setAge(Date dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
   }
 
   public String getPhone() {
@@ -61,13 +64,23 @@ public class Author {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
+
     Author author = (Author) o;
-    return age == author.age && Objects.equals(id, author.id) && Objects.equals(name, author.name) && Objects.equals(surname, author.surname) && Objects.equals(phone, author.phone);
+    return Objects.equals(id, author.id)
+        && Objects.equals(name, author.name)
+        && Objects.equals(surname, author.surname)
+        && Objects.equals(phone, author.phone)
+        && Objects.equals(dateOfBirth, author.dateOfBirth);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, surname, phone, age);
+    int result = Objects.hashCode(id);
+    result = 31 * result + Objects.hashCode(name);
+    result = 31 * result + Objects.hashCode(surname);
+    result = 31 * result + Objects.hashCode(phone);
+    result = 31 * result + Objects.hashCode(dateOfBirth);
+    return result;
   }
 
   @Override
@@ -77,7 +90,7 @@ public class Author {
         ", name='" + name + '\'' +
         ", surname='" + surname + '\'' +
         ", phone='" + phone + '\'' +
-        ", age=" + age +
+        ", dateOfBirth=" + DateUtils.parseString(dateOfBirth) +
         '}';
   }
 }
