@@ -1,15 +1,15 @@
-package homework1.bookstorage;
+package homework1.bookstorage.model;
 
 import java.util.Objects;
 
 public class Book {
   private String id;
   private String title;
-  private String author;
+  private Author author;
   private double price;
   private int quantity;
 
-  public Book(String id, String title, String author, double price, int quantity) {
+  public Book(String id, String title, Author author, double price, int quantity) {
     this.id = id;
     this.title = title;
     this.author = author;
@@ -33,11 +33,11 @@ public class Book {
     this.title = title;
   }
 
-  public String getAuthor() {
+  public Author getAuthor() {
     return author;
   }
 
-  public void setAuthor(String author) {
+  public void setAuthor(Author author) {
     this.author = author;
   }
 
@@ -76,12 +76,12 @@ public class Book {
 
   @Override
   public String toString() {
-    return "Book{" +
+    return "Book[" +
         "id='" + id + '\'' +
         ", title='" + title + '\'' +
         ", author='" + author + '\'' +
         ", price=" + price + '\'' +
         ", quantity=" + quantity +
-        '}';
+        ']';
   }
 }
