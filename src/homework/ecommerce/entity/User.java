@@ -1,6 +1,6 @@
-package homework1.ecommerce.entity;
+package homework.ecommerce.entity;
 
-import homework1.ecommerce.entity.enums.Role;
+import homework.ecommerce.entity.enums.Role;
 
 import java.util.Objects;
 

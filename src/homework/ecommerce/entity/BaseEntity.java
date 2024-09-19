@@ -1,4 +1,4 @@
-package homework1.ecommerce.entity;
+package homework.ecommerce.entity;
 
 public abstract class BaseEntity {
   protected String id;

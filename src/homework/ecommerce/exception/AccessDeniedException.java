@@ -1,4 +1,4 @@
-package homework1.ecommerce.exception;
+package homework.ecommerce.exception;
 
 public class AccessDeniedException extends RuntimeException {
   public AccessDeniedException(String message) {

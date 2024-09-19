@@ -1,19 +1,19 @@
-package homework1.ecommerce;
+package homework.ecommerce;
 
-import homework1.ecommerce.constant.AdminCommand;
-import homework1.ecommerce.constant.AppCommand;
-import homework1.ecommerce.constant.UserCommand;
-import homework1.ecommerce.entity.Order;
-import homework1.ecommerce.entity.Product;
-import homework1.ecommerce.entity.User;
-import homework1.ecommerce.entity.enums.Card;
-import homework1.ecommerce.entity.enums.OrderStatus;
-import homework1.ecommerce.entity.enums.Role;
-import homework1.ecommerce.entity.enums.Type;
-import homework1.ecommerce.exception.*;
-import homework1.ecommerce.storage.OrderStorage;
-import homework1.ecommerce.storage.ProductStorage;
-import homework1.ecommerce.storage.UserStorage;
+import homework.ecommerce.constant.AdminCommand;
+import homework.ecommerce.constant.AppCommand;
+import homework.ecommerce.constant.UserCommand;
+import homework.ecommerce.entity.Order;
+import homework.ecommerce.entity.Product;
+import homework.ecommerce.entity.User;
+import homework.ecommerce.entity.enums.Card;
+import homework.ecommerce.entity.enums.OrderStatus;
+import homework.ecommerce.entity.enums.Role;
+import homework.ecommerce.entity.enums.Type;
+import homework.ecommerce.exception.*;
+import homework.ecommerce.storage.OrderStorage;
+import homework.ecommerce.storage.ProductStorage;
+import homework.ecommerce.storage.UserStorage;
 
 import java.util.Date;
 import java.util.Scanner;

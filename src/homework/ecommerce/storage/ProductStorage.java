@@ -1,7 +1,6 @@
-package homework1.ecommerce.storage;
+package homework.ecommerce.storage;
 
-import com.sun.security.jgss.GSSUtil;
-import homework1.ecommerce.entity.Product;
+import homework.ecommerce.entity.Product;
 
 public class ProductStorage {
   private Product[] products = new Product[10];

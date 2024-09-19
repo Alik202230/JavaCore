@@ -1,4 +1,4 @@
-package homework1.ecommerce.exception;
+package homework.ecommerce.exception;
 
 public class OrderNotFoundException extends RuntimeException {
   public OrderNotFoundException(String message) {

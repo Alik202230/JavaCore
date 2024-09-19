@@ -1,6 +1,6 @@
-package homework1.ecommerce.entity;
+package homework.ecommerce.entity;
 
-import homework1.ecommerce.entity.enums.Type;
+import homework.ecommerce.entity.enums.Type;
 
 import java.util.Objects;
 

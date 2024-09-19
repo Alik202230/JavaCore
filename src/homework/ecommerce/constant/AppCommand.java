@@ -1,4 +1,4 @@
-package homework1.ecommerce.constant;
+package homework.ecommerce.constant;
 
 public interface AppCommand {
   String EXIT = "0";

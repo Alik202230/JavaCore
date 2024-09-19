@@ -1,4 +1,4 @@
-package homework1.ecommerce.exception;
+package homework.ecommerce.exception;
 
 public class UserNotFoundException extends RuntimeException {
   public UserNotFoundException(String message) {

@@ -1,7 +1,7 @@
-package homework1.ecommerce.storage;
+package homework.ecommerce.storage;
 
-import homework1.ecommerce.entity.Order;
-import homework1.ecommerce.entity.User;
+import homework.ecommerce.entity.Order;
+import homework.ecommerce.entity.User;
 
 public class OrderStorage {
   private Order[] orders = new Order[10];

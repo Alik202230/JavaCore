@@ -1,6 +1,6 @@
-package homework1.ecommerce.storage;
+package homework.ecommerce.storage;
 
-import homework1.ecommerce.entity.User;
+import homework.ecommerce.entity.User;
 
 public class UserStorage {
   private User[] users = new User[10];

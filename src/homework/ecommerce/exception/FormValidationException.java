@@ -1,4 +1,4 @@
-package homework1.ecommerce.exception;
+package homework.ecommerce.exception;
 
 public class FormValidationException extends RuntimeException {
   public FormValidationException(String message) {
