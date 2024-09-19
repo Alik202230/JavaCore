@@ -162,7 +162,7 @@ public class EcommerceApp implements AppCommand, UserCommand, AdminCommand {
     System.out.println("Please chose card type");
     Card cardType = Card.valueOf(scanner.nextLine());
 
-    System.out.println("Do you want to buy product" +
+    System.out.println("Do you want to buy product " +
         product.getName() + " with quantity is " +
         product.getQuantity() + " by card " +
         cardType + " ? (Y/N)"
@@ -258,7 +258,7 @@ public class EcommerceApp implements AppCommand, UserCommand, AdminCommand {
   }
 
   private static void addProduct() {
-    System.out.println("Please enter product id, name, description, price, quantity");
+    System.out.println("Please enter product id, name, description, price, quantity, cart type");
     String productData = scanner.nextLine();
     String[] productDataArray = productData.split(",");
 
