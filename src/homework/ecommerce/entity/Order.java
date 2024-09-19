@@ -2,7 +2,6 @@ package homework.ecommerce.entity;
 
 import homework.ecommerce.entity.enums.Card;
 import homework.ecommerce.entity.enums.OrderStatus;
-import homework1.medicalcenter.entity.Doctor;
 
 import java.util.Date;
 import java.util.Objects;
