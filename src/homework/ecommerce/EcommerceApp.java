@@ -157,7 +157,7 @@ public class EcommerceApp implements AppCommand, UserCommand, AdminCommand {
 
     System.out.println("Please enter quantity");
     int quantity = Integer.parseInt(scanner.nextLine());
-    int totalPrice = quantity * product.getQuantity();
+    int totalPrice = (int) (quantity * product.getPrice());
 
     System.out.println("Please chose card type");
     Card cardType = Card.valueOf(scanner.nextLine());
