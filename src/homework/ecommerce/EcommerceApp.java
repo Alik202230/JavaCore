@@ -120,20 +120,14 @@ public class EcommerceApp implements AppCommand, UserCommand, AdminCommand {
   }
 
   private static void cancelOrderById(User user) {
-    printAllOrders();
+    printOrders(user);
     System.out.println("Please enter order id");
     String id = scanner.nextLine();
-    Order orderId = orderStorage.getOrderById(id);
-
-    if (orderId == null) {
+    Order order = orderStorage.getOrderById(id);
+    if (order == null || !order.getUser().equals(user)) {
       throw new OrderNotFoundException("Order not found");
     }
-
-    if (orderStorage.getOrderByUser(user)) {
-      throw new AccessDeniedException("You are not allowed to cancelled this order");
-    }
-
-    orderId.setStatus(OrderStatus.CANCELLED);
+    orderStorage.removeOrderById(id);
     System.out.println("Order cancelled successfully");
   }
 
