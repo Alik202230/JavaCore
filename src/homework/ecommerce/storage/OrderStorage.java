@@ -49,4 +49,23 @@ public class OrderStorage {
       System.out.println(orders[i]);
     }
   }
+
+  public void removeOrderById(String id) {
+    int index = getIndex(id);
+    if (index != -1) {
+      for (int i = index + 1; i < size; i++) {
+        orders[i - 1] = orders[i];
+      }
+      size--;
+    }
+  }
+
+  private int getIndex(String id) {
+    for (int i = 0; i < size; i++) {
+      if (orders[i].getId().equals(id)) {
+        return i;
+      }
+    }
+    return -1;
+  }
 }
